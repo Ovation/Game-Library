@@ -1,0 +1,19 @@
+.header_friends {
+    text-align:center;
+    color:beige;
+}
+.friends_list {
+    background-color:beige;
+    border:solid;
+    width:10rem
+}
+
+button {
+    background-color:beige;
+}
+
+.entries{
+    background-color:beige;
+    border-style:solid
+}
+
