@@ -9,14 +9,18 @@ export const GameProvider = (props) => {
     const [searchTerms, setSearchTerms] = useState("")
 
     const getGames = () => {
-        return fetch(`http://localhost:8088/games`)
-            .then(res => res.json())
-            .then(setGames)
+        return fetch("http://localhost:8000/games", {
+            headers: {
+                Authorization: `Token ${localStorage.getItem("gamer_id")}`,
+            },
+        })
+        .then((res) => res.json())
+        .then(setGames)
     }
 
 
     const addGame = game => {
-        return fetch(`http://localhost:8088/games`, {
+        return fetch(`http://localhost:8000/games`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -26,12 +30,12 @@ export const GameProvider = (props) => {
     }
 
     const getGameById = (id) => {
-        return fetch(`http://localhost:8088/games/${id}`)
+        return fetch(`http://localhost:8000/games/${id}`)
             .then(result => result.json())
     }
 
     const EditGame = game => {
-        return fetch(`http://localhost:8088/games/${game.id}`, {
+        return fetch(`http://localhost:8000/games/${game.id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
@@ -41,7 +45,7 @@ export const GameProvider = (props) => {
         })
     }
     const DeleteGame = entryId => {
-        return fetch(`http://localhost:8088/games/${entryId}`, {
+        return fetch(`http://localhost:8000/games/${entryId}`, {
             method: "DELETE"
         })
             .then(getGames)
